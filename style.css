@@ -1,0 +1,59 @@
+body{
+background:#0f0f0f;
+color:#e8e8e8;
+font-family:monospace;
+text-align:center;
+padding:40px;
+}
+
+h1{
+color:#0A8462;
+letter-spacing:3px;
+}
+
+.quest-box{
+border:2px solid #0A8462;
+padding:30px;
+margin:auto;
+max-width:700px;
+background:#141414;
+box-shadow:0 0 10px #0A8462;
+}
+
+button{
+background:#0A8462;
+border:none;
+padding:12px 25px;
+margin-top:20px;
+color:white;
+cursor:pointer;
+font-size:16px;
+}
+
+button:hover{
+background:#0bda51;
+}
+
+input{
+background:#0f0f0f;
+border:1px solid #0A8462;
+color:white;
+padding:10px;
+margin-top:15px;
+width:250px;
+}
+
+.copper{
+color:#b87333;
+}
+
+.hint{
+color:#0bda51;
+margin-top:15px;
+font-size:14px;
+}
+
+.map{
+margin-top:20px;
+border:1px solid #0A8462;
+}
