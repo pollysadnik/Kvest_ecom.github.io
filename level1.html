@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Уровень 1</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="quest-box">
+
+<h1>УРОВЕНЬ 1</h1>
+
+<p>
+Определите город, который находится 
+на пересечении основных транспортных маршрутов
+между европейской частью России и Сибирью.
+</p>
+
+<img class="map"
+src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Russia_relief_location_map.jpg"
+width="500">
+
+<p>
+Введите название города:
+</p>
+
+<input id="answer">
+
+<br>
+
+<button onclick="check()">Проверить</button>
+
+<p class="hint">
+Подсказка: город часто называют воротами Урала.
+</p>
+
+</div>
+
+<script>
+
+function check(){
+
+let a=document.getElementById("answer").value.toLowerCase();
+
+if(a==="екатеринбург"){
+window.location.href="level2.html";
+}else{
+alert("Неверный ответ");
+}
+
+}
+
+</script>
+
+</body>
+</html>
