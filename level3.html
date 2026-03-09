@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Уровень 3</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="quest-box">
+
+<h1>УРОВЕНЬ 3</h1>
+
+<p>
+Рассчитайте оптимальную точку доставки.
+</p>
+
+<p>
+Москва → Владивосток
+</p>
+
+<p>
+Введите сумму расстояний для города,
+который минимизирует логистику.
+</p>
+
+<input id="answer">
+
+<br>
+
+<button onclick="check()">Проверить</button>
+
+<p class="hint">
+Подсказка: значение около 7300 км
+</p>
+
+</div>
+
+<script>
+
+function check(){
+
+let a=document.getElementById("answer").value;
+
+if(a==="7300"){
+window.location.href="level4.html";
+}else{
+alert("Ошибка расчёта");
+}
+
+}
+
+</script>
+
+</body>
+</html>
