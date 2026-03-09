@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Уровень 5</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="quest-box">
+
+<h1>ФИНАЛЬНАЯ ЗАДАЧА</h1>
+
+<p>
+Логистический центр обрабатывает
+20000 заказов в день.
+</p>
+
+<p>
+Средняя стоимость доставки — 350 рублей.
+</p>
+
+<p>
+Введите дневной оборот:
+</p>
+
+<input id="answer">
+
+<br>
+
+<button onclick="check()">Проверить</button>
+
+</div>
+
+<script>
+
+function check(){
+
+let a=document.getElementById("answer").value;
+
+if(a==="7000000"){
+window.location.href="final.html";
+}else{
+alert("Ошибка расчёта");
+}
+
+}
+
+</script>
+
+</body>
+</html>
