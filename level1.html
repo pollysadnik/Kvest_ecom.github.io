@@ -2,55 +2,89 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Уровень 1</title>
+<title>Локальный бренд</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<h1 id="decrypt">████████████</h1>
+
 <div class="quest-box">
 
-<h1>УРОВЕНЬ 1</h1>
+<h2 class="copper">Начало прогулки</h2>
 
 <p>
-Определите город, который находится 
-на пересечении основных транспортных маршрутов
-между европейской частью России и Сибирью.
+Иногда большие идеи начинаются с самых простых вещей.
 </p>
-
-<img class="map"
-src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Russia_relief_location_map.jpg"
-width="500">
 
 <p>
-Введите название города:
+Прогулка по знакомым улицам.  
+Вывеска старого магазина.  
+Разговор в кофейне.
 </p>
 
-<input id="answer">
-
-<br>
-
-<button onclick="check()">Проверить</button>
-
-<p class="hint">
-Подсказка: город часто называют воротами Урала.
+<p>
+Вы всегда любили уникальные вещи — локальные бренды,
+небольшие магазины, продукты с характером места.
 </p>
+
+<p>
+И однажды возникает мысль:
+</p>
+
+<p class="copper">
+А что если помочь таким брендам выйти в большой мир?
+</p>
+
+<p>
+Но для этого нужна стратегия.
+</p>
+
+<p>
+Где открыть склад?  
+Где будет больше заказов?  
+Как найти точку роста?
+</p>
+
+<button onclick="location.href='level1.html'">
+Отправиться на прогулку
+</button>
 
 </div>
 
 <script>
 
-function check(){
+const text="АНАЛИТИЧЕСКИЙ РЕЖИМ АКТИВЕН";
 
-let a=document.getElementById("answer").value.toLowerCase();
+const el=document.getElementById("decrypt");
 
-if(a==="Екатеринбург"){
-window.location.href="level2.html";
-}else{
-alert("Неверный ответ");
+let letters="ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩ";
+
+let iteration=0;
+
+let interval=setInterval(()=>{
+
+el.innerText=text
+.split("")
+.map((letter,index)=>{
+
+if(index<iteration){
+return text[index];
 }
 
+return letters[Math.floor(Math.random()*letters.length)];
+
+})
+.join("");
+
+if(iteration>=text.length){
+clearInterval(interval);
 }
+
+iteration+=0.5;
+
+},40);
 
 </script>
 
