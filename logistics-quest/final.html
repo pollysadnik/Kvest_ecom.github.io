@@ -138,25 +138,12 @@
   </div>
 
   <script>
-    // Генератор уникального кода
+    // Генератор уникального кода (4 цифры)
     function generateUniqueCode() {
-      const prefixes = ['QC', 'SV', 'WX', 'KZ', 'MN'];
-      const letters = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
-      const numbers = '0123456789';
-
-      const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-      let code = prefix;
-
-      // Добавляем 3 случайные буквы
-      for (let i = 0; i < 3; i++) {
-        code += letters[Math.floor(Math.random() * letters.length)];
-      }
-
-      // Добавляем 4 случайные цифры
+      let code = '';
       for (let i = 0; i < 4; i++) {
-        code += numbers[Math.floor(Math.random() * numbers.length)];
+        code += Math.floor(Math.random() * 10);
       }
-
       return code;
     }
 
@@ -194,22 +181,4 @@
         })
         .join("");
 
-      if (iteration >= text.length) {
-        clearInterval(interval);
-        // После завершения анимации генерируем код
-        document.getElementById('unique-code').textContent = generateUniqueCode();
-        // Запускаем таймер
-        setInterval(updateTimer, 1000);
-        updateTimer(); // Сразу показываем текущее время
-      }
-
-      iteration += 0.5;
-    }, 40);
-
-    // Функция копирования кода
-    function copyCode() {
-      const code = document.getElementById('unique-code').textContent;
-      navigator.clipboard.writeText(code).then(() => {
-        const status = document.getElementById('copy-status');
-        status.textContent = 'Код успешно скопирован!';
-        setTimeout(() => {
+      if
