@@ -1,28 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 
 <head>
+
 <meta charset="UTF-8">
-<title>Quest Bank</title>
+<title>Банк сервисных квестов</title>
 
 <style>
 
 body{
-font-family:Arial;
-text-align:center;
 background:#0f0f0f;
 color:white;
+font-family:Arial;
+text-align:center;
 padding:60px;
 }
 
-button{
+.container{
+max-width:800px;
+margin:auto;
+}
 
-padding:20px 40px;
-margin:20px;
-font-size:18px;
-border:none;
-cursor:pointer;
+h1{
+margin-bottom:40px;
+}
 
+.quest{
+margin:30px;
+padding:30px;
+border-radius:10px;
 }
 
 .logistics{
@@ -33,31 +39,69 @@ background:#0A8462;
 background:#2563eb;
 }
 
+button{
+margin-top:20px;
+padding:12px 28px;
+font-size:16px;
+border:none;
+cursor:pointer;
+border-radius:6px;
+}
+
+button:hover{
+opacity:0.85;
+}
+
+a{
+text-decoration:none;
+}
+
 </style>
 
 </head>
 
 <body>
 
+<div class="container">
+
 <h1>Банк аналитических квестов</h1>
 
 <p>
-Выберите направление исследования
+Выберите направление исследования сервисных рынков
 </p>
 
-<a href="logistics-quest/index.html">
-<button class="logistics">
-Квест: Логистический центр
-</button>
+<div class="quest logistics">
+
+<h2>Квест 1: Логистика e-commerce</h2>
+
+<p>
+Анализ складов маркетплейсов и выбор оптимального
+района для логистического центра.
+</p>
+
+<a href="./logistics-quest/index.html">
+<button>Начать квест</button>
 </a>
 
-<br>
+</div>
 
-<a href="edtech-quest/index.html">
-<button class="edtech">
-Квест: рынок EdTech
-</button>
+
+<div class="quest edtech">
+
+<h2>Квест 2: рынок EdTech</h2>
+
+<p>
+Корпоративная разведка на рынке
+онлайн-образования России.
+</p>
+
+<a href="./edtech-quest/index.html">
+<button>Начать квест</button>
 </a>
+
+</div>
+
+</div>
 
 </body>
 </html>
