@@ -2,50 +2,74 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Логистический квест</title>
+<title>Локальный бренд</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1 id="decrypt">████████████████</h1>
+<h1 id="decrypt">████████████</h1>
 
 <div class="quest-box">
 
-<h2 class="copper">Корпоративная разведка</h2>
+<h2 class="copper">Начало прогулки</h2>
 
 <p>
-Международный маркетплейс ищет место для строительства 
-логистического центра в России.
+Иногда большие идеи начинаются с самых простых вещей.
 </p>
 
 <p>
-Вам нужно пройти серию аналитических заданий 
-и определить оптимальную локацию.
+Прогулка по знакомым улицам.  
+Вывеска старого магазина.  
+Разговор в кофейне.
+</p>
+
+<p>
+Вы всегда любили уникальные вещи — локальные бренды,
+небольшие магазины, продукты с характером места.
+</p>
+
+<p>
+И однажды возникает мысль:
+</p>
+
+<p class="copper">
+А что если помочь таким брендам выйти в большой мир?
+</p>
+
+<p>
+Но для этого нужна стратегия.
+</p>
+
+<p>
+Где открыть склад?  
+Где будет больше заказов?  
+Как найти точку роста?
 </p>
 
 <button onclick="location.href='level1.html'">
-НАЧАТЬ МИССИЮ
+Отправиться на прогулку
 </button>
 
 </div>
 
 <script>
 
-const text = "ДОСТУП К АНАЛИТИЧЕСКОЙ СИСТЕМЕ";
-const el = document.getElementById("decrypt");
+const text="АНАЛИТИЧЕСКИЙ РЕЖИМ АКТИВЕН";
 
-let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩ";
+const el=document.getElementById("decrypt");
 
-let iteration = 0;
+let letters="ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩ";
 
-let interval = setInterval(() => {
+let iteration=0;
 
-el.innerText = text
+let interval=setInterval(()=>{
+
+el.innerText=text
 .split("")
-.map((letter, index) => {
+.map((letter,index)=>{
 
-if(index < iteration){
+if(index<iteration){
 return text[index];
 }
 
@@ -54,11 +78,11 @@ return letters[Math.floor(Math.random()*letters.length)];
 })
 .join("");
 
-if(iteration >= text.length){
+if(iteration>=text.length){
 clearInterval(interval);
 }
 
-iteration += 0.5;
+iteration+=0.5;
 
 },40);
 
