@@ -1,16 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
+
 <head>
+
 <meta charset="UTF-8">
-<title>Уровень 4</title>
-<link rel="stylesheet" href="style.css">
+<title>Квест — уровень 4</title>
+
+<style>
+
+body{
+background:#0f0f0f;
+color:white;
+font-family:Arial;
+text-align:center;
+padding:60px;
+}
+
+.container{
+max-width:700px;
+margin:auto;
+}
+
+input{
+padding:12px;
+font-size:16px;
+margin-top:15px;
+width:260px;
+}
+
+button{
+margin-top:20px;
+padding:12px 25px;
+background:#0A8462;
+border:none;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+opacity:0.85;
+}
+
+.message{
+margin-top:20px;
+color:#ff6b6b;
+}
+
+.hint{
+margin-top:15px;
+color:#0bda51;
+}
+
+</style>
+
 </head>
 
 <body>
 
-<div class="quest-box">
+<div class="container">
 
-<h1>УРОВЕНЬ 4</h1>
+<h1>Уровень 4</h1>
 
 <p>
 Вы замечаете, что сразу несколько крупных компаний имеют склады рядом с этим объектом. 
@@ -21,24 +71,41 @@
 Определите, что это за объект и в ответ запишите особое 3-х буквенное обозначение этого объекта.
 </p>
 
-<input id="answer">
+<p><b>Введите 3-х буквенное обозначение</b></p>
+
+<input id="answer" placeholder="Обозначение">
 
 <br>
 
-<button onclick="check()">Ответить</button>
+<button onclick="checkAnswer()">Проверить</button>
+
+<p id="message" class="message"></p>
 
 </div>
 
 <script>
 
-function check(){
+function normalize(text){
+return text
+.trim()
+.toLowerCase();
+}
 
-let a=document.getElementById("answer").value.toLowerCase();
+function checkAnswer(){
 
-if(a==="SVX"){
-window.location.href="level5.html";
-}else{
-alert("Неверно");
+let input = normalize(document.getElementById("answer").value);
+
+if(input === "SVX"){
+
+window.location.href = "level4.html";
+
+}
+
+else{
+
+document.getElementById("message").innerText =
+"Ответ не распознан. Попробуйте снова.";
+
 }
 
 }
