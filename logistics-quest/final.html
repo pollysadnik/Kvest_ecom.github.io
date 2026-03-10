@@ -1,63 +1,212 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Миссия выполнена</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Миссия выполнена</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f0f0f 0%, #0a2e1f 50%, #0f0f0f 100%);
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 60px;
+      margin: 0;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Фоновые акценты */
+    .accent-bg {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(10, 132, 98, 0.15);
+      z-index: -1;
+    }
+
+    #accent1 { top: 10%; left: 10%; }
+    #accent2 { top: 30%; right: 15%; }
+    #accent3 { bottom: 20%; left: 20%; }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1#decrypt {
+      font-size: 2.2em;
+      margin-bottom: 30px;
+      color: #0bda51;
+      text-shadow: 0 0 10px rgba(11, 218, 81, 0.5);
+    }
+
+    .quest-box {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(10, 132, 98, 0.3);
+      margin-top: 30px;
+    }
+
+    .copper {
+      color: #b87333;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .hint {
+      color: #0bda51;
+      margin: 20px 0;
+      font-style: italic;
+    }
+
+    .result-info {
+      background: rgba(10, 132, 98, 0.2);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 25px 0;
+      border-left: 4px solid #0bda51;
+    }
+
+    .code-display {
+      font-family: 'Courier New', monospace;
+      font-size: 1.3em;
+      color: #0bda51;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 15px;
+      border-radius: 8px;
+      display: inline-block;
+      margin: 10px 0;
+      letter-spacing: 3px;
+    }
+
+    .timer {
+      font-size: 1.1em;
+      color: #ff6b6b;
+      margin: 15px 0;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 12px 30px;
+      background: #0A8462;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #0bda51;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(10, 132, 98, 0.4);
+    }
+  </style>
 </head>
 
 <body>
+  <!-- Фоновые акценты -->
+  <div class="accent-bg" id="accent1"></div>
+  <div class="accent-bg" id="accent2"></div>
+  <div class="accent-bg" id="accent3"></div>
 
-<h1 id="decrypt">████████████████</h1>
+  <div class="container">
+    <h1 id="decrypt">████████████████</h1>
 
-<div class="quest-box">
+    <div class="quest-box">
+      <h2 class="copper">MISSION COMPLETE</h2>
+      <h1>Спасибо за прохождение!</h1>
+      <p class="hint">Система завершила расчёт.</p>
 
-<h2 class="copper">MISSION COMPLETE</h2>
+      <div class="result-info">
+        <p>Уникальный код прохождения:</p>
+        <div class="code-display" id="unique-code">ГЕНЕРАЦИЯ...</div>
+        <p class="timer">Время прохождения: <span id="timer">00:00</span></p>
+        <p><small>Этот код и время уникальны для вашего прохождения</small></p>
+      </div>
 
-<h1>Спасибо за прохождение</h1>
+      <button onclick="copyCode()">Копировать код</button>
+      <p id="copy-status" style="margin-top: 10px; font-size: 0.9em; color: #0bda51;"></p>
+    </div>
+  </div>
 
-<img class="logo" src="rickroll-rick-astley.gif">
+  <script>
+    // Генератор уникального кода
+    function generateUniqueCode() {
+      const prefixes = ['QC', 'SV', 'WX', 'KZ', 'MN'];
+      const letters = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+      const numbers = '0123456789';
 
-<p class="hint">
-Система завершила расчёт.
-</p>
+      const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+      let code = prefix;
 
-</div>
+      // Добавляем 3 случайные буквы
+      for (let i = 0; i < 3; i++) {
+        code += letters[Math.floor(Math.random() * letters.length)];
+      }
 
-<script>
+      // Добавляем 4 случайные цифры
+      for (let i = 0; i < 4; i++) {
+        code += numbers[Math.floor(Math.random() * numbers.length)];
+      }
 
-const text="ДОСТУП ПОДТВЕРЖДЕН";
+      return code;
+    }
 
-const el=document.getElementById("decrypt");
+    // Таймер прохождения
+    let startTime = localStorage.getItem('questStartTime');
+    if (!startTime) {
+      startTime = Date.now();
+      localStorage.setItem('questStartTime', startTime);
+    }
 
-let letters="ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩ";
+    function updateTimer() {
+      const currentTime = Date.now();
+      const elapsed = currentTime - parseInt(startTime);
+      const minutes = Math.floor(elapsed / 60000);
+      const seconds = Math.floor((elapsed % 60000) / 1000);
 
-let iteration=0;
+      document.getElementById('timer').textContent =
+        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
 
-let interval=setInterval(()=>{
+    // Анимация расшифровки текста
+    const text = "ДОСТУП ПОДТВЕРЖДЕН";
+    const el = document.getElementById("decrypt");
+    let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩ";
+    let iteration = 0;
 
-el.innerText=text
-.split("")
-.map((letter,index)=>{
+    let interval = setInterval(() => {
+      el.innerText = text
+        .split("")
+        .map((letter, index) => {
+          if (index < iteration) {
+            return text[index];
+          }
+          return letters[Math.floor(Math.random() * letters.length)];
+        })
+        .join("");
 
-if(index<iteration){
-return text[index];
-}
+      if (iteration >= text.length) {
+        clearInterval(interval);
+        // После завершения анимации генерируем код
+        document.getElementById('unique-code').textContent = generateUniqueCode();
+        // Запускаем таймер
+        setInterval(updateTimer, 1000);
+        updateTimer(); // Сразу показываем текущее время
+      }
 
-return letters[Math.floor(Math.random()*letters.length)];
+      iteration += 0.5;
+    }, 40);
 
-})
-.join("");
-
-if(iteration>=text.length){
-clearInterval(interval);
-}
-
-iteration+=0.5;
-
-},40);
-
-</script>
-
-</body>
-</html>
+    // Функция копирования кода
+    function copyCode() {
+      const code = document.getElementById('unique-code').textContent;
+      navigator.clipboard.writeText(code).then(() =>
